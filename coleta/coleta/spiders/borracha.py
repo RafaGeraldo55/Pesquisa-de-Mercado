@@ -12,6 +12,9 @@ class BorrachaSpider(scrapy.Spider):
 
         for product in products:
             yield {
-                'description': product.css('a.poly-component__title::text').get()
+                'description': product.css('a.poly-component__title::text').get(),
+                'currency': product.css('span.andes-money-amount__currency-symbol').get(),
+                'price': product.css('span.andes-money-amount__fraction').get(),
+                'cents': product.css('span.andes-money-amount__cents andes-money-amount__cents--superscript-24').get()
             }
         pass
