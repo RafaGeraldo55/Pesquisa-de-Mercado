@@ -6,7 +6,7 @@ class BorrachaSpider(scrapy.Spider):
     allowed_domains = ["lista.mercadolivre.com.br"]
     start_urls = ["https://lista.mercadolivre.com.br/borracha-porta-geladeira?psafe_param=1"]
     page_count = 1
-    max_page = 15
+    max_page = 10
 
 
     def parse(self, response):
@@ -22,9 +22,9 @@ class BorrachaSpider(scrapy.Spider):
             }
 
         if self.page_count < self.max_page:
-            next_page = response.css('li.andes-pagination__button.andes-pagination__button--next.a::attr(href)').get()
+            next_page = response.css('li.andes-pagination__button.andes-pagination__button--next a::attr(href)').get()
             if next_page:
                 self.page_count =+ 1
                 yield scrapy.Request(url=next_page, callback=self.parse)
-        pass
+
  
