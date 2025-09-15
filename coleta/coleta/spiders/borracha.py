@@ -20,7 +20,7 @@ class BorrachaSpider(scrapy.Spider):
                 'name': product.css('a.poly-component__title::text').get(),
                 'currency': product.css('span.andes-money-amount__currency-symbol::text').get(),
                 'price': product.css('span.andes-money-amount__fraction::text').get(),
-                'cents': product.css('span.andes-money-amount__cents andes-money-amount__cents--superscript-24::text').get()
+                'cents': product.css('span.andes-money-amount__cents.andes-money-amount__cents--superscript-24::text').get(),
             }
 
         if self.page_count < self.max_page:
